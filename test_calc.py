@@ -1,4 +1,5 @@
 from calc import add
+import pytest
 
 
 # Write your tests below.
@@ -9,13 +10,29 @@ from calc import add
 # Example:
 
 def test_example_string_returns_zero():
+#    assert add("") == 0  # uncomment to test
+    pass
+
+
+def test_custom_delimiter():
+    assert add("//;\n1;2") == 3
+    assert add("//#\n1#2#3") == 6
+
     assert add("") == 0  # uncomment to test
     assert add("1") == 1
     assert add("1,2") == 3
     assert add("1,2,3") == 6
-    # assert add("1\n2,3") == 6
-    # assert add("//;\n1;2") == 3
-    # assert add("2,1001") == 2
-    # assert add("//[***]\n1***2***3") == 6
-    # assert add("//[*][%]\n1*2%3") == 6
-    # assert add("//[***][##]\n1***2##3") == 6
+    assert add("1\n2,3") == 6
+    assert add("//;\n1;2") == 3
+    assert add("2,1001") == 2
+    assert add("//[***]\n1***2***3") == 6
+    assert add("//[*][%]\n1*2%3") == 6
+    assert add("//[***][##]\n1***2##3") == 6
+
+def test_negative_raises():
+    with pytest.raises(ValueError, match="negatives not allowed: -1"):
+        add("-1,2")
+
+def test_negative_shows_all():
+    with pytest.raises(ValueError, match="-1"):
+        add("1,-1,2,-3")
