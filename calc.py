@@ -1,4 +1,7 @@
-""" Edit the function below to implement the String Calculator TDD Kata """
+""" String Calculator TDD Kata """
 
 def add(numbers):
-    return "42"
+
+    # Feature 1: empty string returns 0
+    if numbers == "":
+        return 0
