@@ -13,4 +13,10 @@ def add(numbers):
         delimiter = re.escape(header[2:])
 
     parts = re.split(delimiter + r"|,|\n", numbers)
-    return sum(int(n) for n in parts if n != "")
+    values = [int(n) for n in parts if n != ""]
+
+    negatives = [v for v in values if v < 0]
+    if negatives:
+        raise ValueError(f"negatives not allowed: {', '.join(str(n) for n in negatives)}")
+
+    return sum(values)
