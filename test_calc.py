@@ -1,4 +1,5 @@
 from calc import add
+import pytest
 
 
 # Write your tests below.
@@ -21,12 +22,12 @@ def test_custom_delimiter():
     assert add("1") == 1
     assert add("1,2") == 3
     assert add("1,2,3") == 6
-    # assert add("1\n2,3") == 6
-    # assert add("//;\n1;2") == 3
-    # assert add("2,1001") == 2
-    # assert add("//[***]\n1***2***3") == 6
-    # assert add("//[*][%]\n1*2%3") == 6
-    # assert add("//[***][##]\n1***2##3") == 6
+    assert add("1\n2,3") == 6
+    assert add("//;\n1;2") == 3
+    assert add("2,1001") == 2
+    assert add("//[***]\n1***2***3") == 6
+    assert add("//[*][%]\n1*2%3") == 6
+    assert add("//[***][##]\n1***2##3") == 6
 
 def test_negative_raises():
     with pytest.raises(ValueError, match="negatives not allowed: -1"):
