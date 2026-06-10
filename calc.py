@@ -9,3 +9,5 @@ def add(numbers):
     numbers = numbers.replace("\n", ",")
     # Feature 3: split on comma — handles 1, 2, or any number of values
     parts = numbers.split(",")
+    # Feature 4: sum all parts
+    return sum(int(n) for n in parts)
