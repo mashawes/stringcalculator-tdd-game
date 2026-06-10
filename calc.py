@@ -30,3 +30,8 @@ def add(numbers):
         header, numbers = numbers.split("\n", 1)
         raw = header[2:]
         delimiter = re.escape(raw)
+        if raw.startswith("["):
+            delimiters = re.findall(r'\[([^\]]+)\]', raw)
+            delimiter = re.escape(delimiters[0])
+        else:
+            delimiter = re.escape(raw)
