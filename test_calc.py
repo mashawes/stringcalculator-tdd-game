@@ -9,5 +9,13 @@ from calc import add
 # Example:
 
 def test_example_string_returns_zero():
-#    assert add("") == 0  # uncomment to test
-    pass
+    assert add("") == 0  # uncomment to test
+    assert add("1") == 1
+    assert add("1,2") == 3
+    assert add("1,2,3") == 6
+    # assert add("1\n2,3") == 6
+    # assert add("//;\n1;2") == 3
+    # assert add("2,1001") == 2
+    # assert add("//[***]\n1***2***3") == 6
+    # assert add("//[*][%]\n1*2%3") == 6
+    # assert add("//[***][##]\n1***2##3") == 6
