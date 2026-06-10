@@ -7,3 +7,5 @@ def add(numbers):
         return 0
     # Feature 2: treat newlines as delimiters (normalise before splitting)
     numbers = numbers.replace("\n", ",")
+    # Feature 3: split on comma — handles 1, 2, or any number of values
+    parts = numbers.split(",")
