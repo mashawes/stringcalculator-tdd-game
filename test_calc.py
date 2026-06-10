@@ -11,3 +11,8 @@ from calc import add
 def test_example_string_returns_zero():
 #    assert add("") == 0  # uncomment to test
     pass
+
+
+def test_custom_delimiter():
+    assert add("//;\n1;2") == 3
+    assert add("//#\n1#2#3") == 6
