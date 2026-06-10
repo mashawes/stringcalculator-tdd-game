@@ -13,7 +13,13 @@ def add(numbers):
     # Feature 3: support custom delimiter via //[delimiter]\n header
     if numbers.startswith("//"):
         header, numbers = numbers.split("\n", 1)
-        delimiter = re.escape(header[2:])
+        raw = header[2:]
+        if raw.startswith("["):
+            delimiters = re.findall(r'\[([^\]]+)\]', raw)
+            # Feature 7+8: multiple delimiters of any length e.g. //[***][##]\n
+            delimiter = '|'.join(re.escape(d) for d in delimiters)
+        else:
+            delimiter = re.escape(raw)
 
     # Feature 4: split on delimiter — handles any number of values
     parts = re.split(delimiter + r"|,|\n", numbers)
@@ -26,18 +32,3 @@ def add(numbers):
 
     # Feature 6: sum all parts
     return sum(values)
-    if numbers.startswith("//"):
-        header, numbers = numbers.split("\n", 1)
-        raw = header[2:]
-        delimiter = re.escape(raw)
-        if raw.startswith("["):
-            delimiters = re.findall(r'\[([^\]]+)\]', raw)
-            delimiter = re.escape(delimiters[0])
-        else:
-            delimiter = re.escape(raw)
-        if raw.startswith("["):
-            delimiters = re.findall(r'\[([^\]]+)\]', raw)
-            # Feature 8: multiple delimiters e.g. //[*][%]\n and //[***][##]\n
-            delimiter = '|'.join(re.escape(d) for d in delimiters)
-        else:
-            delimiter = re.escape(raw)
